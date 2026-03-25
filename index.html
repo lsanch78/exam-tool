@@ -7,58 +7,24 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: #f7f6f3;
-    color: #2c2c2a;
-    min-height: 100vh;
-    padding: 2rem 1rem;
-  }
-  .container { max-width: 640px; margin: 0 auto; }
+  body { font-family: 'DM Sans', sans-serif; background: #f7f6f3; color: #2c2c2a; min-height: 100vh; padding: 2rem 1rem; }
+  .container { max-width: 660px; margin: 0 auto; }
   .header { text-align: center; margin-bottom: 2rem; }
   .header h1 { font-size: 22px; font-weight: 600; letter-spacing: -0.3px; margin-bottom: 4px; }
   .header p { font-size: 14px; color: #888780; }
-  .info-box {
-    background: #fff;
-    border: 1px solid #e8e6e1;
-    border-radius: 14px;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1rem;
-    font-size: 13px;
-    color: #5f5e5a;
-    line-height: 1.6;
-  }
+  .info-box { background: #fff; border: 1px solid #e8e6e1; border-radius: 14px; padding: 1rem 1.25rem; margin-bottom: 1rem; font-size: 13px; color: #5f5e5a; line-height: 1.6; }
   .info-title { font-weight: 600; font-size: 14px; color: #2c2c2a; margin-bottom: 6px; }
-  .timer-card {
-    background: #fff;
-    border: 1px solid #e8e6e1;
-    border-radius: 14px;
-    padding: 1.25rem 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-  }
+  .timer-card { background: #fff; border: 1px solid #e8e6e1; border-radius: 14px; padding: 1.25rem 1.5rem; display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
   .timer-label { font-size: 12px; color: #888780; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
   .timer-clock { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 500; color: #2c2c2a; transition: color 0.3s; }
   .timer-clock.warning { color: #E24B4A; }
   .timer-buttons { display: flex; gap: 8px; }
-  .btn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 8px 18px;
-    border-radius: 8px;
-    border: 1px solid #d3d1c7;
-    background: #fff;
-    color: #2c2c2a;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
+  .btn { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; padding: 8px 18px; border-radius: 8px; border: 1px solid #d3d1c7; background: #fff; color: #2c2c2a; cursor: pointer; transition: all 0.15s; }
   .btn:hover { background: #f1efe8; }
   .btn:active { transform: scale(0.97); }
   .btn-primary { background: #2c2c2a; color: #fff; border-color: #2c2c2a; }
   .btn-primary:hover { background: #444441; }
+  .btn-sm { font-size: 12px; padding: 5px 12px; }
   .score-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; padding: 0 4px; }
   .score-text { font-size: 14px; color: #888780; }
   .progress-bar-bg { height: 4px; background: #e8e6e1; border-radius: 2px; margin-bottom: 1.25rem; overflow: hidden; }
@@ -70,186 +36,103 @@
   .q-num { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #b4b2a9; min-width: 32px; }
   .q-label { flex: 1; font-size: 14px; color: #2c2c2a; }
   .q-section { font-weight: 500; }
+  .q-badge { font-size: 10px; padding: 2px 6px; border-radius: 10px; margin-left: 6px; font-weight: 500; }
+  .q-badge.new { background: #E1F5EE; color: #0F6E56; }
+  .q-badge.retry { background: #FAEEDA; color: #854F0B; }
   .q-actions { display: flex; gap: 6px; }
-  .chip {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 5px 14px;
-    border-radius: 20px;
-    border: 1px solid #d3d1c7;
-    background: #fff;
-    color: #888780;
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-  }
+  .chip { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; padding: 5px 14px; border-radius: 20px; border: 1px solid #d3d1c7; background: #fff; color: #888780; cursor: pointer; transition: all 0.15s; user-select: none; }
   .chip:hover { border-color: #b4b2a9; }
   .chip.right-on { background: #E1F5EE; border-color: #5DCAA5; color: #0F6E56; }
   .chip.wrong-on { background: #FCEBEB; border-color: #F09595; color: #A32D2D; }
   .bottom-bar { text-align: center; margin-top: 1.25rem; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
 
-  /* Setup screen */
-  .setup-card {
-    background: #fff;
-    border: 1px solid #e8e6e1;
-    border-radius: 14px;
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-  }
+  /* Stats panel */
+  .stats-card { background: #fff; border: 1px solid #e8e6e1; border-radius: 14px; padding: 1.25rem; margin-bottom: 1rem; }
+  .stats-card h3 { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
+  .stats-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 16px; }
+  .stat-box { background: #f7f6f3; border-radius: 10px; padding: 12px; text-align: center; }
+  .stat-value { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; }
+  .stat-label { font-size: 11px; color: #888780; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.3px; }
+  .mastery-row { display: flex; align-items: center; padding: 6px 0; font-size: 13px; }
+  .mastery-row .name { min-width: 90px; font-weight: 500; color: #2c2c2a; }
+  .mastery-row .bar-bg { flex: 1; height: 6px; background: #e8e6e1; border-radius: 3px; margin: 0 10px; overflow: hidden; }
+  .mastery-row .bar-fill { height: 100%; border-radius: 3px; transition: width 0.3s; }
+  .mastery-row .pct { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #5f5e5a; min-width: 36px; text-align: right; }
+  .coverage-bar { margin-top: 10px; }
+  .coverage-label { font-size: 12px; color: #888780; margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .coverage-track { height: 8px; background: #e8e6e1; border-radius: 4px; overflow: hidden; position: relative; }
+  .coverage-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #5DCAA5, #1D9E75); transition: width 0.5s; }
+
+  /* History */
+  .history-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f1efe8; font-size: 13px; }
+  .history-row:last-child { border-bottom: none; }
+  .history-date { color: #888780; font-size: 12px; }
+  .history-score { font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+  .history-score.great { color: #1D9E75; }
+  .history-score.ok { color: #BA7517; }
+  .history-score.rough { color: #E24B4A; }
+
+  /* Setup */
+  .setup-card { background: #fff; border: 1px solid #e8e6e1; border-radius: 14px; padding: 1.5rem; margin-bottom: 1rem; }
   .setup-card h2 { font-size: 16px; font-weight: 600; margin-bottom: 1rem; }
   .field { margin-bottom: 1rem; }
   .field label { display: block; font-size: 13px; font-weight: 500; color: #5f5e5a; margin-bottom: 4px; }
-  .field input, .field textarea {
-    font-family: 'DM Sans', sans-serif;
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid #d3d1c7;
-    border-radius: 8px;
-    font-size: 14px;
-    color: #2c2c2a;
-    background: #fff;
-    transition: border-color 0.15s;
-  }
+  .field input, .field textarea { font-family: 'DM Sans', sans-serif; width: 100%; padding: 10px 12px; border: 1px solid #d3d1c7; border-radius: 8px; font-size: 14px; color: #2c2c2a; background: #fff; transition: border-color 0.15s; }
   .field input:focus, .field textarea:focus { outline: none; border-color: #888780; }
   .field textarea { resize: vertical; min-height: 60px; }
-  .field .hint { font-size: 12px; color: #b4b2a9; margin-top: 4px; }
-  .section-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;
-  }
+  .section-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
   .section-row input { flex: 1; }
   .section-row input:first-child { flex: 2; }
-  .remove-btn {
-    font-family: 'DM Sans', sans-serif;
-    background: none;
-    border: none;
-    color: #b4b2a9;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: color 0.15s;
-  }
+  .remove-btn { font-family: 'DM Sans', sans-serif; background: none; border: none; color: #b4b2a9; font-size: 18px; cursor: pointer; padding: 4px 8px; border-radius: 4px; }
   .remove-btn:hover { color: #E24B4A; }
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-  .section-header label { margin-bottom: 0; }
-  .add-btn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 4px 12px;
-    border-radius: 6px;
-    border: 1px solid #d3d1c7;
-    background: #fff;
-    color: #5f5e5a;
-    cursor: pointer;
-  }
+  .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .add-btn { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 6px; border: 1px solid #d3d1c7; background: #fff; color: #5f5e5a; cursor: pointer; }
   .add-btn:hover { background: #f1efe8; }
-  .url-box {
-    background: #f1efe8;
-    border-radius: 8px;
-    padding: 10px 12px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: #5f5e5a;
-    word-break: break-all;
-    margin-top: 1rem;
-    display: none;
-    position: relative;
-  }
-  .url-box .copy-btn {
-    position: absolute;
-    top: 6px;
-    right: 6px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 4px;
-    border: 1px solid #d3d1c7;
-    background: #fff;
-    color: #5f5e5a;
-    cursor: pointer;
-  }
-  .url-box .copy-btn:hover { background: #e8e6e1; }
+  .url-box { background: #f1efe8; border-radius: 8px; padding: 10px 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5f5e5a; word-break: break-all; margin-top: 1rem; display: none; position: relative; }
+  .url-box .copy-btn { position: absolute; top: 6px; right: 6px; font-family: 'DM Sans', sans-serif; font-size: 11px; padding: 3px 10px; border-radius: 4px; border: 1px solid #d3d1c7; background: #fff; color: #5f5e5a; cursor: pointer; }
 
   /* Grade modal */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 100;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-  }
+  .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.4); z-index: 100; justify-content: center; align-items: center; padding: 1rem; }
   .modal-overlay.open { display: flex; }
-  .modal {
-    background: #fff;
-    border-radius: 16px;
-    max-width: 480px;
-    width: 100%;
-    max-height: 80vh;
-    overflow-y: auto;
-    padding: 1.5rem;
-  }
+  .modal { background: #fff; border-radius: 16px; max-width: 480px; width: 100%; max-height: 85vh; overflow-y: auto; padding: 1.5rem; }
   .modal h2 { font-size: 18px; font-weight: 600; margin-bottom: 4px; }
-  .modal .big-score {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 40px;
-    font-weight: 500;
-    margin: 0.75rem 0;
-  }
+  .modal .big-score { font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 500; margin: 0.75rem 0; }
   .modal .big-score.great { color: #1D9E75; }
   .modal .big-score.ok { color: #BA7517; }
   .modal .big-score.rough { color: #E24B4A; }
-  .section-grade {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
-    border-bottom: 1px solid #f1efe8;
-    font-size: 14px;
-  }
+  .section-grade { display: flex; align-items: center; padding: 8px 0; border-bottom: 1px solid #f1efe8; font-size: 14px; }
   .section-grade:last-child { border-bottom: none; }
-  .section-grade .name { color: #2c2c2a; font-weight: 500; }
-  .section-grade .score { font-family: 'JetBrains Mono', monospace; color: #5f5e5a; }
-  .section-grade .bar-bg {
-    flex: 1;
-    height: 4px;
-    background: #e8e6e1;
-    border-radius: 2px;
-    margin: 0 12px;
-    overflow: hidden;
-  }
+  .section-grade .name { min-width: 100px; font-weight: 500; }
+  .section-grade .score { font-family: 'JetBrains Mono', monospace; color: #5f5e5a; min-width: 44px; text-align: right; }
+  .section-grade .bar-bg { flex: 1; height: 4px; background: #e8e6e1; border-radius: 2px; margin: 0 12px; overflow: hidden; }
   .section-grade .bar-fill { height: 100%; border-radius: 2px; }
   .missed-list { margin-top: 1rem; font-size: 13px; color: #5f5e5a; line-height: 1.8; }
   .missed-item { color: #A32D2D; }
+
+  /* Tabs */
+  .tab-bar { display: flex; gap: 0; margin-bottom: 1rem; border-bottom: 1px solid #e8e6e1; }
+  .tab { padding: 10px 20px; font-size: 13px; font-weight: 500; color: #888780; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; background: none; border-top: none; border-left: none; border-right: none; font-family: 'DM Sans', sans-serif; }
+  .tab:hover { color: #5f5e5a; }
+  .tab.active { color: #2c2c2a; border-bottom-color: #2c2c2a; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
 
   @media (max-width: 500px) {
     .timer-card { flex-direction: column; gap: 12px; text-align: center; }
     .q-label { font-size: 13px; }
     .chip { padding: 4px 10px; font-size: 11px; }
+    .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 </style>
 </head>
 <body>
 
-<!-- SETUP SCREEN -->
+<!-- ===================== SETUP SCREEN ===================== -->
 <div class="container" id="setup-screen">
   <div class="header">
     <h1>Practice exam generator</h1>
     <p>Configure your exam, then share the link with your class</p>
   </div>
-
   <div class="setup-card">
     <h2>Exam details</h2>
     <div class="field">
@@ -258,7 +141,7 @@
     </div>
     <div class="field">
       <label>Instructions (optional)</label>
-      <textarea id="cfg-instructions" placeholder="e.g. Give yourself two tries per problem. Refresh to get a new random set."></textarea>
+      <textarea id="cfg-instructions" placeholder="e.g. Give yourself two tries per problem."></textarea>
     </div>
     <div class="field">
       <label>Timer (minutes)</label>
@@ -269,30 +152,26 @@
       <input type="number" id="cfg-count" value="22" min="1" max="200" style="width: 100px;">
     </div>
   </div>
-
   <div class="setup-card">
     <div class="section-header">
       <h2 style="margin-bottom: 0;">Sections</h2>
       <button class="add-btn" onclick="addSectionRow()">+ Add section</button>
     </div>
-    <div class="hint" style="font-size: 12px; color: #b4b2a9; margin-bottom: 12px;">
-      Enter each section name and how many problems it has.
-    </div>
+    <div style="font-size: 12px; color: #b4b2a9; margin-bottom: 12px;">Enter each section name and how many problems it has.</div>
     <div id="section-rows"></div>
   </div>
-
-  <div style="display: flex; gap: 10px; justify-content: center;">
+  <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
     <button class="btn btn-primary" onclick="launchExam()" style="padding: 12px 32px; font-size: 14px;">Generate exam</button>
     <button class="btn" onclick="generateLink()" style="padding: 12px 32px; font-size: 14px;">Copy share link</button>
+    <button class="btn" onclick="clearAllData()" style="padding: 12px 32px; font-size: 14px; color: #A32D2D;">Reset all data</button>
   </div>
-
   <div class="url-box" id="url-box">
     <span id="url-text"></span>
     <button class="copy-btn" onclick="copyUrl()">Copy</button>
   </div>
 </div>
 
-<!-- EXAM SCREEN -->
+<!-- ===================== EXAM SCREEN ===================== -->
 <div class="container" id="exam-screen" style="display: none;">
   <div class="header">
     <h1 id="exam-title">Practice Exam</h1>
@@ -304,38 +183,90 @@
     <span id="exam-instructions-text"></span>
   </div>
 
-  <div class="timer-card">
-    <div>
-      <div class="timer-label">Time remaining</div>
-      <div class="timer-clock" id="clock">60:00</div>
+  <!-- Tabs -->
+  <div class="tab-bar">
+    <button class="tab active" onclick="switchTab('exam')">Exam</button>
+    <button class="tab" onclick="switchTab('stats')">My stats</button>
+    <button class="tab" onclick="switchTab('history')">History</button>
+  </div>
+
+  <!-- EXAM TAB -->
+  <div class="tab-panel active" id="tab-exam">
+    <div class="timer-card">
+      <div>
+        <div class="timer-label">Time remaining</div>
+        <div class="timer-clock" id="clock">60:00</div>
+      </div>
+      <div class="timer-buttons">
+        <button class="btn btn-primary" id="start-btn" onclick="toggleTimer()">Start</button>
+        <button class="btn" onclick="resetTimer()">Reset</button>
+      </div>
     </div>
-    <div class="timer-buttons">
-      <button class="btn btn-primary" id="start-btn" onclick="toggleTimer()">Start</button>
-      <button class="btn" onclick="resetTimer()">Reset</button>
+    <div class="score-bar">
+      <span class="score-text" id="score-display">0 / 0 answered</span>
+      <span class="score-text" id="percent-display"></span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+    <div class="question-list" id="questions"></div>
+    <div class="bottom-bar">
+      <button class="btn" onclick="newExam()" style="padding: 10px 28px; font-size: 14px;">New exam</button>
+      <button class="btn btn-primary" onclick="gradeExam()" style="padding: 10px 28px; font-size: 14px;">Grade my exam</button>
+      <button class="btn" onclick="goToSetup()" style="padding: 10px 28px; font-size: 14px;">Edit config</button>
     </div>
   </div>
 
-  <div class="score-bar">
-    <span class="score-text" id="score-display">0 / 0 answered</span>
-    <span class="score-text" id="percent-display"></span>
-  </div>
-  <div class="progress-bar-bg">
-    <div class="progress-bar-fill" id="progress-fill"></div>
+  <!-- STATS TAB -->
+  <div class="tab-panel" id="tab-stats">
+    <div class="stats-card">
+      <h3>Problem coverage</h3>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <div class="stat-value" id="stat-seen">0</div>
+          <div class="stat-label">Seen</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="stat-total">0</div>
+          <div class="stat-label">Total</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-value" id="stat-accuracy">0%</div>
+          <div class="stat-label">Accuracy</div>
+        </div>
+      </div>
+      <div class="coverage-bar">
+        <div class="coverage-label">
+          <span>Coverage</span>
+          <span id="coverage-pct">0%</span>
+        </div>
+        <div class="coverage-track">
+          <div class="coverage-fill" id="coverage-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-card">
+      <h3>Section mastery</h3>
+      <div id="mastery-rows"></div>
+    </div>
+    <div style="text-align: center; margin-top: 1rem;">
+      <button class="btn btn-sm" onclick="clearAllData()">Reset all history</button>
+    </div>
   </div>
 
-  <div class="question-list" id="questions"></div>
-
-  <div class="bottom-bar">
-    <button class="btn" onclick="newExam()" style="padding: 10px 28px; font-size: 14px;">New exam</button>
-    <button class="btn btn-primary" onclick="gradeExam()" style="padding: 10px 28px; font-size: 14px;">Grade my exam</button>
-    <button class="btn" onclick="goToSetup()" style="padding: 10px 28px; font-size: 14px;">Edit config</button>
+  <!-- HISTORY TAB -->
+  <div class="tab-panel" id="tab-history">
+    <div class="stats-card">
+      <h3>Session history</h3>
+      <div id="history-list"><div style="font-size:13px;color:#b4b2a9;padding:12px 0;">No sessions recorded yet.</div></div>
+    </div>
   </div>
 </div>
 
 <!-- GRADE MODAL -->
 <div class="modal-overlay" id="grade-modal" onclick="closeModal(event)">
   <div class="modal" onclick="event.stopPropagation()">
-    <h2 id="modal-heading">Your results</h2>
+    <h2>Your results</h2>
     <div class="big-score" id="modal-score"></div>
     <div id="modal-sections"></div>
     <div class="missed-list" id="modal-missed"></div>
@@ -346,14 +277,10 @@
 </div>
 
 <script>
-var config = {
-  title: "Practice Exam",
-  instructions: "",
-  timer: 60,
-  count: 22,
-  sections: []
-};
-
+/* ======================================================
+   STATE
+   ====================================================== */
+var config = { title: "Practice Exam", instructions: "", timer: 60, count: 22, sections: [] };
 var questions = [];
 var state = {};
 var seconds = 3600;
@@ -361,8 +288,36 @@ var timerInterval = null;
 var running = false;
 var examSize = 22;
 
-/* --- SETUP --- */
+/* ======================================================
+   LOCAL STORAGE HELPERS
+   ====================================================== */
+function storageKey() {
+  var id = config.sections.map(function(s) { return s.section + ":" + s.total; }).join("|");
+  return "pex_" + id;
+}
 
+function loadHistory() {
+  try {
+    var raw = localStorage.getItem(storageKey());
+    if (raw) return JSON.parse(raw);
+  } catch (e) {}
+  return { problems: {}, sessions: [] };
+}
+
+function saveHistory(data) {
+  try { localStorage.setItem(storageKey(), JSON.stringify(data)); } catch (e) {}
+}
+
+function clearAllData() {
+  if (!confirm("This will erase all your history and stats for this exam config. Continue?")) return;
+  try { localStorage.removeItem(storageKey()); } catch (e) {}
+  renderStats();
+  renderHistory();
+}
+
+/* ======================================================
+   SETUP SCREEN
+   ====================================================== */
 function addSectionRow(name, total) {
   var container = document.getElementById("section-rows");
   var row = document.createElement("div");
@@ -380,15 +335,12 @@ function readSetupForm() {
   config.timer = parseInt(document.getElementById("cfg-timer").value) || 60;
   config.count = parseInt(document.getElementById("cfg-count").value) || 22;
   config.sections = [];
-
   var rows = document.getElementById("section-rows").children;
   for (var i = 0; i < rows.length; i++) {
     var inputs = rows[i].querySelectorAll("input");
     var name = inputs[0].value.trim();
     var total = parseInt(inputs[1].value);
-    if (name && total > 0) {
-      config.sections.push({ section: name, total: total });
-    }
+    if (name && total > 0) config.sections.push({ section: name, total: total });
   }
 }
 
@@ -424,55 +376,42 @@ function copyUrl() {
 
 function launchExam() {
   readSetupForm();
-  if (config.sections.length === 0) {
-    alert("Add at least one section with problems.");
-    return;
-  }
+  if (config.sections.length === 0) { alert("Add at least one section with problems."); return; }
   startExamScreen();
 }
 
 function goToSetup() {
-  if (running) {
-    clearInterval(timerInterval);
-    running = false;
-  }
+  if (running) { clearInterval(timerInterval); running = false; }
   document.getElementById("setup-screen").style.display = "";
   document.getElementById("exam-screen").style.display = "none";
 }
 
-/* --- URL PARSING --- */
-
+/* ======================================================
+   URL PARSING
+   ====================================================== */
 function parseUrlParams() {
   var hash = window.location.hash || "";
   if (hash.indexOf("#config=") !== 0) return false;
-
   try {
     var json = decodeURIComponent(hash.substring(8));
     var obj = JSON.parse(json);
-
     config.title = obj.title || "Practice Exam";
     config.instructions = obj.instructions || "";
     config.timer = parseInt(obj.timer) || 60;
     config.count = parseInt(obj.count) || 22;
     config.sections = [];
-
     if (obj.sections && obj.sections.length) {
       for (var i = 0; i < obj.sections.length; i++) {
-        var lastColon = obj.sections[i].lastIndexOf(":");
-        if (lastColon > 0) {
-          var name = obj.sections[i].substring(0, lastColon);
-          var total = parseInt(obj.sections[i].substring(lastColon + 1));
-          if (name && total > 0) {
-            config.sections.push({ section: name, total: total });
-          }
+        var lc = obj.sections[i].lastIndexOf(":");
+        if (lc > 0) {
+          var nm = obj.sections[i].substring(0, lc);
+          var tt = parseInt(obj.sections[i].substring(lc + 1));
+          if (nm && tt > 0) config.sections.push({ section: nm, total: tt });
         }
       }
     }
-
     return config.sections.length > 0;
-  } catch (e) {
-    return false;
-  }
+  } catch (e) { return false; }
 }
 
 function populateSetupFromConfig() {
@@ -481,13 +420,29 @@ function populateSetupFromConfig() {
   document.getElementById("cfg-timer").value = config.timer;
   document.getElementById("cfg-count").value = config.count;
   document.getElementById("section-rows").innerHTML = "";
-  for (var i = 0; i < config.sections.length; i++) {
-    addSectionRow(config.sections[i].section, config.sections[i].total);
-  }
+  for (var i = 0; i < config.sections.length; i++) addSectionRow(config.sections[i].section, config.sections[i].total);
 }
 
-/* --- EXAM ENGINE --- */
+/* ======================================================
+   TABS
+   ====================================================== */
+function switchTab(name) {
+  var tabs = document.querySelectorAll(".tab");
+  var panels = document.querySelectorAll(".tab-panel");
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].className = "tab";
+    panels[i].className = "tab-panel";
+  }
+  var idx = name === "exam" ? 0 : name === "stats" ? 1 : 2;
+  tabs[idx].className = "tab active";
+  panels[idx].className = "tab-panel active";
+  if (name === "stats") renderStats();
+  if (name === "history") renderHistory();
+}
 
+/* ======================================================
+   EXAM ENGINE
+   ====================================================== */
 function shuffle(arr) {
   var i, j, tmp;
   for (i = arr.length - 1; i > 0; i--) {
@@ -508,63 +463,90 @@ function generateExamQuestions() {
   var totalProblems = 0;
   var i, j;
   for (i = 0; i < bank.length; i++) totalProblems += bank[i].total;
-
   examSize = Math.min(config.count, totalProblems);
-  var qs = [];
-  var remaining = examSize;
 
+  // Load history to do smart selection
+  var hist = loadHistory();
+  var probs = hist.problems || {};
+
+  // Build full problem list per section with priority
+  // Priority: 0 = never seen, 1 = seen & got wrong, 2 = seen & got right
+  var allItems = [];
   for (i = 0; i < bank.length; i++) {
-    var sec = bank[i];
-    var proportion = sec.total / totalProblems;
-    var count;
-    if (i === bank.length - 1) {
-      count = remaining;
-    } else {
-      count = Math.round(examSize * proportion);
-    }
-    if (count < 1) count = 1;
-    if (count > sec.total) count = sec.total;
-    if (count > remaining) count = remaining;
-    remaining -= count;
-
-    var allProbs = [];
-    for (j = 1; j <= sec.total; j++) allProbs.push(j);
-    var picked = pickRandom(allProbs, count);
-    for (j = 0; j < picked.length; j++) {
-      qs.push({ section: sec.section, prob: picked[j] });
+    for (j = 1; j <= bank[i].total; j++) {
+      var key = bank[i].section + "|" + j;
+      var p = probs[key];
+      var priority;
+      if (!p) priority = 0;
+      else if (p.wrong > 0 && p.right === 0) priority = 1;
+      else if (p.wrong >= p.right) priority = 1;
+      else priority = 2;
+      allItems.push({ section: bank[i].section, prob: j, priority: priority, key: key });
     }
   }
 
+  // Determine proportional allocation per section
+  var sectionAlloc = [];
+  var remaining = examSize;
+  for (i = 0; i < bank.length; i++) {
+    var proportion = bank[i].total / totalProblems;
+    var count;
+    if (i === bank.length - 1) { count = remaining; }
+    else { count = Math.round(examSize * proportion); }
+    if (count < 1) count = 1;
+    if (count > bank[i].total) count = bank[i].total;
+    if (count > remaining) count = remaining;
+    remaining -= count;
+    sectionAlloc.push({ section: bank[i].section, count: count, total: bank[i].total });
+  }
+
+  // For each section, pick smartly: unseen first, then wrong, then right
+  var qs = [];
+  for (i = 0; i < sectionAlloc.length; i++) {
+    var sa = sectionAlloc[i];
+    var sectionItems = [];
+    for (j = 0; j < allItems.length; j++) {
+      if (allItems[j].section === sa.section) sectionItems.push(allItems[j]);
+    }
+
+    // Sort by priority (0 first = unseen, then 1 = wrong, then 2 = right)
+    sectionItems.sort(function(a, b) { return a.priority - b.priority; });
+
+    // Within same priority, shuffle for variety
+    var grouped = [[], [], []];
+    for (j = 0; j < sectionItems.length; j++) grouped[sectionItems[j].priority].push(sectionItems[j]);
+    shuffle(grouped[0]); shuffle(grouped[1]); shuffle(grouped[2]);
+    var sorted = grouped[0].concat(grouped[1]).concat(grouped[2]);
+
+    var picked = sorted.slice(0, sa.count);
+    for (j = 0; j < picked.length; j++) {
+      qs.push({ section: picked[j].section, prob: picked[j].prob, priority: picked[j].priority });
+    }
+  }
+
+  // Fill any remaining slots
   if (remaining > 0) {
-    var sorted = bank.slice().sort(function(a, b) { return b.total - a.total; });
-    for (i = 0; i < sorted.length; i++) {
-      if (remaining <= 0) break;
-      var sect = sorted[i];
-      var existing = [];
-      for (j = 0; j < qs.length; j++) {
-        if (qs[j].section === sect.section) existing.push(qs[j].prob);
-      }
-      var available = [];
-      for (j = 1; j <= sect.total; j++) {
-        if (existing.indexOf(j) === -1) available.push(j);
-      }
-      var extra = pickRandom(available, Math.min(remaining, available.length));
-      for (j = 0; j < extra.length; j++) {
-        qs.push({ section: sect.section, prob: extra[j] });
-      }
-      remaining -= extra.length;
+    var used = {};
+    for (i = 0; i < qs.length; i++) used[qs[i].section + "|" + qs[i].prob] = true;
+    var leftover = [];
+    for (i = 0; i < allItems.length; i++) {
+      if (!used[allItems[i].key]) leftover.push(allItems[i]);
+    }
+    leftover.sort(function(a, b) { return a.priority - b.priority; });
+    for (i = 0; i < Math.min(remaining, leftover.length); i++) {
+      qs.push({ section: leftover[i].section, prob: leftover[i].prob, priority: leftover[i].priority });
     }
   }
 
   shuffle(qs);
   for (i = 0; i < qs.length; i++) qs[i].num = i + 1;
+  examSize = qs.length;
   return qs;
 }
 
 function startExamScreen() {
   document.getElementById("setup-screen").style.display = "none";
   document.getElementById("exam-screen").style.display = "";
-
   document.getElementById("exam-title").textContent = config.title;
   document.getElementById("page-title").textContent = config.title;
 
@@ -572,7 +554,7 @@ function startExamScreen() {
   for (var i = 0; i < config.sections.length; i++) sectionNames.push(config.sections[i].section);
   var first = sectionNames[0] || "";
   var last = sectionNames[sectionNames.length - 1] || "";
-  document.getElementById("exam-subtitle").textContent = examSize + " problems \u00B7 " + first + " \u2013 " + last;
+  document.getElementById("exam-subtitle").textContent = config.count + " problems \u00B7 " + first + " \u2013 " + last;
 
   if (config.instructions) {
     document.getElementById("exam-instructions").style.display = "";
@@ -584,6 +566,7 @@ function startExamScreen() {
   seconds = config.timer * 60;
   renderClock();
   renderExam();
+  switchTab("exam");
 }
 
 function renderExam() {
@@ -591,16 +574,21 @@ function renderExam() {
   state = {};
   var container = document.getElementById("questions");
   container.innerHTML = "";
-  var i, q, row;
+  var i, q, row, badge;
 
   for (i = 0; i < questions.length; i++) {
     q = questions[i];
     state[q.num] = null;
+
+    badge = "";
+    if (q.priority === 0) badge = '<span class="q-badge new">new</span>';
+    else if (q.priority === 1) badge = '<span class="q-badge retry">retry</span>';
+
     row = document.createElement("div");
     row.className = "q-row";
     row.innerHTML =
       '<span class="q-num">' + (q.num < 10 ? "0" : "") + q.num + "</span>" +
-      '<span class="q-label"><span class="q-section">' + q.section + "</span>, Problem " + q.prob + "</span>" +
+      '<span class="q-label"><span class="q-section">' + q.section + "</span>, Problem " + q.prob + badge + "</span>" +
       '<div class="q-actions">' +
         '<button class="chip" id="right-' + q.num + "\" onclick=\"mark(" + q.num + ",'right')\">Right</button>" +
         '<button class="chip" id="wrong-' + q.num + "\" onclick=\"mark(" + q.num + ",'wrong')\">Wrong</button>" +
@@ -612,17 +600,10 @@ function renderExam() {
 
 function updateScore() {
   var answered = 0, right = 0, key;
-  for (key in state) {
-    if (state[key] !== null) answered++;
-    if (state[key] === "right") right++;
-  }
+  for (key in state) { if (state[key] !== null) answered++; if (state[key] === "right") right++; }
   document.getElementById("score-display").textContent = answered + " / " + examSize + " answered";
   document.getElementById("progress-fill").style.width = Math.round((answered / examSize) * 100) + "%";
-  if (answered > 0) {
-    document.getElementById("percent-display").textContent = Math.round((right / answered) * 100) + "% correct";
-  } else {
-    document.getElementById("percent-display").textContent = "";
-  }
+  document.getElementById("percent-display").textContent = answered > 0 ? Math.round((right / answered) * 100) + "% correct" : "";
 }
 
 function mark(num, val) {
@@ -638,6 +619,9 @@ function mark(num, val) {
   updateScore();
 }
 
+/* ======================================================
+   TIMER
+   ====================================================== */
 function renderClock() {
   var m = Math.floor(seconds / 60);
   var s = seconds % 60;
@@ -648,28 +632,20 @@ function renderClock() {
 
 function toggleTimer() {
   if (running) {
-    clearInterval(timerInterval);
-    running = false;
+    clearInterval(timerInterval); running = false;
     document.getElementById("start-btn").textContent = "Resume";
   } else {
     running = true;
     document.getElementById("start-btn").textContent = "Pause";
     timerInterval = setInterval(function() {
-      if (seconds > 0) {
-        seconds--;
-        renderClock();
-      } else {
-        clearInterval(timerInterval);
-        running = false;
-        document.getElementById("start-btn").textContent = "Done";
-      }
+      if (seconds > 0) { seconds--; renderClock(); }
+      else { clearInterval(timerInterval); running = false; document.getElementById("start-btn").textContent = "Done"; }
     }, 1000);
   }
 }
 
 function resetTimer() {
-  clearInterval(timerInterval);
-  running = false;
+  clearInterval(timerInterval); running = false;
   seconds = config.timer * 60;
   document.getElementById("clock").className = "timer-clock";
   document.getElementById("start-btn").textContent = "Start";
@@ -678,35 +654,29 @@ function resetTimer() {
 
 function newExam() {
   var hasAnswers = false, key;
-  for (key in state) {
-    if (state[key] !== null) { hasAnswers = true; break; }
-  }
-  if (hasAnswers) {
-    if (!confirm("This will clear your current answers and generate a new exam. Continue?")) return;
-  }
+  for (key in state) { if (state[key] !== null) { hasAnswers = true; break; } }
+  if (hasAnswers && !confirm("This will clear current answers and generate a new exam. Continue?")) return;
   resetTimer();
   renderExam();
 }
 
+/* ======================================================
+   GRADING + SAVE TO HISTORY
+   ====================================================== */
 function closeModal(e) {
-  if (e.target === document.getElementById("grade-modal")) {
-    document.getElementById("grade-modal").className = "modal-overlay";
-  }
+  if (e.target === document.getElementById("grade-modal")) document.getElementById("grade-modal").className = "modal-overlay";
 }
 
 function gradeExam() {
   var i, q, v;
   var sectionMap = {};
-
   for (i = 0; i < config.sections.length; i++) {
     sectionMap[config.sections[i].section] = { right: 0, wrong: 0, total: 0, missed: [] };
   }
-
   var totalRight = 0, totalAnswered = 0;
 
   for (i = 0; i < questions.length; i++) {
-    q = questions[i];
-    v = state[q.num];
+    q = questions[i]; v = state[q.num];
     var entry = sectionMap[q.section];
     if (!entry) continue;
     entry.total++;
@@ -714,7 +684,37 @@ function gradeExam() {
     else if (v === "wrong") { entry.wrong++; totalAnswered++; entry.missed.push("#" + q.prob); }
   }
 
-  var pct = totalAnswered > 0 ? Math.round((totalRight / totalAnswered) * 100) : 0;
+  if (totalAnswered === 0) { alert("Mark your answers first!"); return; }
+
+  // Save to localStorage
+  var hist = loadHistory();
+  if (!hist.problems) hist.problems = {};
+  if (!hist.sessions) hist.sessions = [];
+
+  for (i = 0; i < questions.length; i++) {
+    q = questions[i]; v = state[q.num];
+    if (v === null) continue;
+    var pkey = q.section + "|" + q.prob;
+    if (!hist.problems[pkey]) hist.problems[pkey] = { right: 0, wrong: 0, attempts: 0 };
+    hist.problems[pkey].attempts++;
+    if (v === "right") hist.problems[pkey].right++;
+    else hist.problems[pkey].wrong++;
+  }
+
+  var now = new Date();
+  var dateStr = now.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+  var timeStr = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+  hist.sessions.push({
+    date: dateStr + " " + timeStr,
+    right: totalRight,
+    total: totalAnswered,
+    pct: Math.round((totalRight / totalAnswered) * 100)
+  });
+
+  saveHistory(hist);
+
+  // Show modal
+  var pct = Math.round((totalRight / totalAnswered) * 100);
   var scoreEl = document.getElementById("modal-score");
   scoreEl.textContent = totalRight + "/" + totalAnswered + " (" + pct + "%)";
   scoreEl.className = "big-score" + (pct >= 80 ? " great" : pct >= 60 ? " ok" : " rough");
@@ -724,15 +724,14 @@ function gradeExam() {
     var name = config.sections[i].section;
     var data = sectionMap[name];
     if (data.total === 0) continue;
-    var secAnswered = data.right + data.wrong;
-    var secPct = secAnswered > 0 ? Math.round((data.right / secAnswered) * 100) : 0;
+    var secAns = data.right + data.wrong;
+    var secPct = secAns > 0 ? Math.round((data.right / secAns) * 100) : 0;
     var barColor = secPct >= 80 ? "#1D9E75" : secPct >= 60 ? "#BA7517" : "#E24B4A";
     sectionsHtml +=
       '<div class="section-grade">' +
         '<span class="name" style="min-width:100px;">' + name + "</span>" +
         '<div class="bar-bg"><div class="bar-fill" style="width:' + secPct + "%;background:" + barColor + ';"></div></div>' +
-        '<span class="score">' + data.right + "/" + secAnswered + "</span>" +
-      "</div>";
+        '<span class="score">' + data.right + "/" + secAns + "</span></div>";
   }
   document.getElementById("modal-sections").innerHTML = sectionsHtml;
 
@@ -740,22 +739,101 @@ function gradeExam() {
   for (i = 0; i < config.sections.length; i++) {
     var nm = config.sections[i].section;
     var d = sectionMap[nm];
-    if (d.missed.length > 0) {
-      missedHtml += '<span class="missed-item">' + nm + ": missed " + d.missed.join(", ") + "</span><br>";
-    }
+    if (d.missed.length > 0) missedHtml += '<span class="missed-item">' + nm + ": missed " + d.missed.join(", ") + "</span><br>";
   }
-  if (missedHtml) {
-    document.getElementById("modal-missed").innerHTML = "<strong>Review these:</strong><br>" + missedHtml;
-  } else if (totalAnswered > 0) {
-    document.getElementById("modal-missed").innerHTML = "Perfect score!";
-  } else {
-    document.getElementById("modal-missed").innerHTML = "Mark your answers first!";
-  }
-
+  document.getElementById("modal-missed").innerHTML = missedHtml ? "<strong>Review these:</strong><br>" + missedHtml : "Perfect score!";
   document.getElementById("grade-modal").className = "modal-overlay open";
 }
 
-/* --- INIT --- */
+/* ======================================================
+   STATS PANEL
+   ====================================================== */
+function renderStats() {
+  var hist = loadHistory();
+  var probs = hist.problems || {};
+  var totalProblems = 0, seen = 0, totalRight = 0, totalAttempts = 0;
+  var sectionStats = {};
+  var i, j;
+
+  for (i = 0; i < config.sections.length; i++) {
+    var sec = config.sections[i];
+    totalProblems += sec.total;
+    sectionStats[sec.section] = { total: sec.total, seen: 0, right: 0, attempts: 0 };
+  }
+
+  for (var key in probs) {
+    var p = probs[key];
+    var parts = key.split("|");
+    var secName = parts[0];
+    seen++;
+    totalRight += p.right;
+    totalAttempts += p.attempts;
+    if (sectionStats[secName]) {
+      sectionStats[secName].seen++;
+      sectionStats[secName].right += p.right;
+      sectionStats[secName].attempts += p.attempts;
+    }
+  }
+
+  document.getElementById("stat-seen").textContent = seen;
+  document.getElementById("stat-total").textContent = totalProblems;
+  var accuracy = totalAttempts > 0 ? Math.round((totalRight / totalAttempts) * 100) : 0;
+  document.getElementById("stat-accuracy").textContent = accuracy + "%";
+
+  var covPct = totalProblems > 0 ? Math.round((seen / totalProblems) * 100) : 0;
+  document.getElementById("coverage-pct").textContent = covPct + "%";
+  document.getElementById("coverage-fill").style.width = covPct + "%";
+
+  // Section mastery
+  var html = "";
+  for (i = 0; i < config.sections.length; i++) {
+    var name = config.sections[i].section;
+    var ss = sectionStats[name];
+    var secPct = ss.attempts > 0 ? Math.round((ss.right / ss.attempts) * 100) : 0;
+    var secCov = ss.total > 0 ? Math.round((ss.seen / ss.total) * 100) : 0;
+    var barColor = secPct >= 80 ? "#1D9E75" : secPct >= 60 ? "#BA7517" : "#E24B4A";
+    if (ss.attempts === 0) barColor = "#d3d1c7";
+    html +=
+      '<div class="mastery-row">' +
+        '<span class="name">' + name + "</span>" +
+        '<div class="bar-bg"><div class="bar-fill" style="width:' + secPct + "%;background:" + barColor + ';"></div></div>' +
+        '<span class="pct">' + secPct + "%</span>" +
+      "</div>" +
+      '<div style="font-size:11px;color:#b4b2a9;margin:-2px 0 8px 100px;">' + ss.seen + "/" + ss.total + " seen (" + secCov + "% coverage)</div>";
+  }
+  document.getElementById("mastery-rows").innerHTML = html || '<div style="font-size:13px;color:#b4b2a9;">No data yet.</div>';
+}
+
+/* ======================================================
+   HISTORY PANEL
+   ====================================================== */
+function renderHistory() {
+  var hist = loadHistory();
+  var sessions = hist.sessions || [];
+  var container = document.getElementById("history-list");
+
+  if (sessions.length === 0) {
+    container.innerHTML = '<div style="font-size:13px;color:#b4b2a9;padding:12px 0;">No sessions recorded yet. Complete an exam and grade it to see your history.</div>';
+    return;
+  }
+
+  var html = "";
+  // Show most recent first
+  for (var i = sessions.length - 1; i >= 0; i--) {
+    var s = sessions[i];
+    var cls = s.pct >= 80 ? "great" : s.pct >= 60 ? "ok" : "rough";
+    html +=
+      '<div class="history-row">' +
+        '<span class="history-date">' + s.date + "</span>" +
+        '<span class="history-score ' + cls + '">' + s.right + "/" + s.total + " (" + s.pct + "%)</span>" +
+      "</div>";
+  }
+  container.innerHTML = html;
+}
+
+/* ======================================================
+   INIT
+   ====================================================== */
 (function() {
   if (parseUrlParams()) {
     populateSetupFromConfig();
